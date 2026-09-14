@@ -1,0 +1,37 @@
+package components
+
+import "gotta/internal/models"
+import "gotta/web/helpers"
+
+templ TodoList(todos []models.Todo) {
+	<ul class="space-y-2">
+		for _, t := range todos {
+			<li
+				x-show={ helpers.VisibilityExpr(t.Completed) }
+				class="flex items-center justify-between border rounded px-3 py-2 bg-white"
+			>
+				<span class={ templ.KV("line-through text-gray-400", t.Completed) }>
+					{ t.Text }
+				</span>
+				<div class="flex gap-2">
+					<button
+						hx-post={ helpers.ToggleUrl(t.ID) }
+						hx-target="#todo-list"
+						hx-swap="innerHTML"
+						class="text-sm text-blue-500"
+					>
+						{ helpers.ToggleLabel(t.Completed) }
+					</button>
+					<button
+						hx-delete={ helpers.DeleteUrl(t.ID) }
+						hx-target="#todo-list"
+						hx-swap="innerHTML"
+						class="text-sm text-red-500"
+					>
+						Delete
+					</button>
+				</div>
+			</li>
+		}
+	</ul>
+}

@@ -1,0 +1,28 @@
+package layouts
+
+import "gotta/web/viewmodels"
+
+
+
+templ Base(meta viewmodels.PageMeta) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{ meta.Title }</title>
+	<meta name="description" content={ meta.Description } />
+	<link rel="stylesheet" href="/static/css/output.css" />
+	<script src="/static/js/htmx.min.js"></script>
+	<script defer src="/static/js/alpine.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+	<script defer src="/static/js/app.js"></script>
+</head>
+
+<!-- ADDED lg:h-screen lg:overflow-hidden -->
+<body class="bg-[#141414] min-h-screen p-4 lg:h-screen lg:overflow-hidden">
+	{ children... }
+</body>
+</html>
+}
