@@ -1,0 +1,29 @@
+package components
+
+templ TodoFilters() {
+	<div class="px-4 pb-3 flex gap-1.5 text-xs">
+		<button
+			@click="filter = 'all'"
+			:class="filter === 'all'
+				? 'bg-amber-400 text-black border-amber-400'
+				: 'text-white/60 border-white/10 hover:text-white hover:border-white/25'"
+			class="px-3 py-1.5 rounded-full border font-medium transition"
+		>All</button>
+
+		<button
+			@click="filter = 'active'"
+			:class="filter === 'active'
+				? 'bg-amber-400 text-black border-amber-400'
+				: 'text-white/60 border-white/10 hover:text-white hover:border-white/25'"
+			class="px-3 py-1.5 rounded-full border font-medium transition"
+		>Active</button>
+
+		<button
+			@click="filter = 'done'"
+			:class="filter === 'done'
+				? 'bg-amber-400 text-black border-amber-400'
+				: 'text-white/60 border-white/10 hover:text-white hover:border-white/25'"
+			class="px-3 py-1.5 rounded-full border font-medium transition"
+		>Done</button>
+	</div>
+}

@@ -27,13 +27,12 @@ func (h *TodoHandlerHTML) Index(c *gin.Context) {
 		c.String(http.StatusInternalServerError, "Failed to load todos")
 		return
 	}
-
-	meta := viewmodels.PageMeta{
+	card := viewmodels.CardModel{
 		Title:       "Todo List",
 		Description: "A simple todo list app",
 	}
 
-	httpx.Render(c, http.StatusOK, components.TodoPage(todo, meta))
+	httpx.Render(c, http.StatusOK, components.TodoPage(todo, card))
 }
 
 func (h *TodoHandlerHTML) Add(c *gin.Context) {

@@ -4,55 +4,20 @@ import "gotta/internal/models"
 import "gotta/web/viewmodels"
 import "gotta/web/layouts"
 
-templ TodoPage(todos []models.Todo, meta viewmodels.PageMeta) {
-    @layouts.Base(meta){
-	<div class="max-w-md mx-auto" x-data="{ filter: 'all' }">
-			<h1 class="text-2xl font-bold mb-4 text-white">{ meta.Title }</h1>
-
-			<form
-				hx-post="/add"
-				hx-target="#todo-list"
-				hx-swap="innerHTML"
-				class="flex gap-2 mb-4"
-			>
-				<input
-					type="text"
-					name="text"
-					placeholder="New todo"
-					required
-					class="border rounded px-3 py-1 flex-1"
-				/>
-				<button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded">
-					Add
-				</button>
-			</form>
-
-			<div class="flex gap-2 mb-4 text-sm">
-				<button
-					@click="filter = 'all'"
-					class="px-2 py-1 rounded"
-					:class="filter === 'all' && 'bg-gray-200'"
-				>
-					All
-				</button>
-				<button
-					@click="filter = 'active'"
-					class="px-2 py-1 rounded"
-					:class="filter === 'active' && 'bg-gray-200'"
-				>
-					Active
-				</button>
-				<button
-					@click="filter = 'done'"
-					class="px-2 py-1 rounded"
-					:class="filter === 'done' && 'bg-gray-200'"
-				>
-					Done
-				</button>
-			</div>
-
-			<div id="todo-list">
-				@TodoList(todos)
+templ TodoPage(todos []models.Todo, card viewmodels.CardModel) {
+    @layouts.Base(viewmodels.PageMeta{
+		Title: card.Title,
+		Description: card.Description,
+	}){
+		<div class="h-full flex items-center justify-center">
+			<div class="w-full max-w-lg" x-data="{ filter: 'all' }">
+				@Card(card) {
+					@TodoForm()
+					@TodoFilters()
+					<div id="todo-list" class="px-4 pb-4 max-h-[55vh] overflow-y-auto">
+						@TodoList(todos)
+					</div>
+				}
 			</div>
 		</div>
     }
