@@ -1,4 +1,4 @@
-GOTTA 🧸
+## Mad GOTTA 🧸
 
 A custom Go web stack for building modern web applications with 
 Gin, templ, HTMX, Tailwind CSS, and Alpine.js.
